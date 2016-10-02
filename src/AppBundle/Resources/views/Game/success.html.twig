@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div id="content">
+
+            <h2>Congratulations!</h2>
+
+            <p>
+                You found the word <strong>{{game.word}}</strong> and won this game.
+            </p>
+            <a href="{{path('app_game_index')}}">Nouvelle partie </a>
+        </div>
+{% endblock%}

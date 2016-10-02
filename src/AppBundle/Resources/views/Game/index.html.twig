@@ -1,0 +1,56 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div id="content">
+
+    <h2>Guess the mysterious word</h2>
+
+    <p class="attempts">
+        You still have {{ game.remainingAttempts }} remaining attempts.
+    </p>
+
+    <ul class="word_letters">
+        {% for letter in game.wordLetters %}
+            <li class="letter {{ game.letterfound(letter) ? 'guessed' : 'hidden'}}">
+            {{ game.letterfound(letter) ? letter : '?'}}
+            </li>
+         {% endfor%}
+    </ul>
+
+    <br class="clearfix" />
+
+    <p class="attempts">
+        <a href="{{path('app_game_reset') }}">Reset the game</a>
+    </p>
+
+    <br class="clearfix" />
+
+    <h2>Try a letter</h2>
+    <ul>
+        {% for letter in 'a'..'z' %}
+            {# dump(game.isLetterFound(letter)) #}
+            <li class="letter {{letter in game.triedLetters ?
+                    (game.isLetterFound(letter) ? 'guessed' : 'tried')
+                : ''}}">
+            <a href="{{path('app_game_try_letter', {letter: letter})}}">
+                {{letter|upper}}
+            </a>
+        </li>
+        {% endfor%}
+    </ul>
+
+    <h2>Try a word</h2>
+    
+    {{form(form)}}
+
+    {#<form action="{{path('app_game_try_word')}}" method="post">
+        <p>
+            <label for="word">Word:</label>
+            <input type="text" id="word" name="word"/>
+            <button type="submit">Let me guess...</button>
+        </p>
+    </form>#}
+
+</div>
+{% endblock body%}
+
