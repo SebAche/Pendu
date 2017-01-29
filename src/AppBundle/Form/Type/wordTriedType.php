@@ -23,7 +23,6 @@ class wordTriedType extends AbstractType  {
         $builder
                 ->add('word_tried',  Type\TextType::class, array('label' => 'World : ',
                     'constraints'=> array(new NotBlank())))
-                ->add('submit', Type\SubmitType::class, array('label' => 'Let me guess...'));
-                
+                ->add('submit', Type\SubmitType::class, array('label' => 'Let me guess...'));    
     }
 }
